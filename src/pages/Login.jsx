@@ -4,14 +4,17 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import loginImage from "../assets/login.svg";
 import { useDispatch, useSelector } from "react-redux";
-import { logInUser } from "../Redux/features/authSlice";
+import { logInUser,logInGoogle } from "../Redux/features/Auth/authSlice";
 import { useEffect } from "react";
+import toast from 'react-hot-toast';
 const Login = () => {
-  const {isLoading, email} = useSelector(state=> state.auth)
+  const {isLoading, email,isError,error} = useSelector(state=> state.auth)
   const { register, handleSubmit, reset } = useForm();
   const navigate = useNavigate();
   const dispatch = useDispatch()
-
+const handleGoogle =()=>{
+  dispatch(logInGoogle())
+}
   const onSubmit = ({email, password}) => {
     dispatch(logInUser({email,password}))
   };
@@ -20,6 +23,11 @@ useEffect(()=>{
     navigate('/')
   }
 },[isLoading,email])
+useEffect(()=>{
+  if(isError){
+    toast.error(error)
+  }
+},[isError,error])
   return (
     <div className='flex h-screen items-center'>
       <div className='w-1/2'>
@@ -64,9 +72,16 @@ useEffect(()=>{
                     Sign up
                   </span>
                 </p>
+               
               </div>
             </div>
           </form>
+          <button onClick={handleGoogle}
+                  type='submit'
+                  className='font-bold text-white py-3 rounded-full bg-primary w-full'
+                >
+                  Login with google
+                </button>
         </div>
       </div>
     </div>

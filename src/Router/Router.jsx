@@ -11,6 +11,7 @@ import Signup from "../pages/Signup";
 import AddJob from "../pages/employeeDashboard/AddJob";
 import EmployerDashboard from "../pages/employeeDashboard/EmployerDashboard";
 import CandidateDashboard from "../pages/candidateDashboard/CandidateDashboard";
+import PrivateRoute from "../utils/PrivateRoute";
 
 const Router = createBrowserRouter([
   {
@@ -48,9 +49,9 @@ const Router = createBrowserRouter([
       {
         path: "/register/:type",
         element: (
-          // <PrivateRoute>
+          <PrivateRoute>
             <AccountCreator />
-          // </PrivateRoute>
+          </PrivateRoute>
         ),
       },
     ],
@@ -58,10 +59,10 @@ const Router = createBrowserRouter([
   {
     path: "/dashboard",
     element: (
-      
+      <PrivateRoute>
         <Dashboard />
-     
-    ),
+      </PrivateRoute>
+         ),
     children: [
       {
         path: "add-job",

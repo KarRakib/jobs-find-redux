@@ -1,9 +1,12 @@
   
 import { useFieldArray, useForm } from "react-hook-form";
 import { FiTrash } from "react-icons/fi";
+import { useJobPostMutation } from "../../Redux/features/Job/JobApi";
 
 const AddJob = () => {
   const { handleSubmit, register, control } = useForm();
+  const [postJob,{data:jobos}] = useJobPostMutation()
+console.log(jobos);
   const {
     fields: resFields,
     append: resAppend,
@@ -21,6 +24,7 @@ const AddJob = () => {
   } = useFieldArray({ control, name: "requirements" });
 
   const onSubmit = (data) => {
+    postJob(data)
     console.log(data);
   };
 

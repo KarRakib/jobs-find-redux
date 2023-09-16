@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { Link, useLocation } from "react-router-dom";
 import { auth } from "../../Firebase/firebase.config";
-import { logout } from "../../Redux/features/authSlice";
+import { logout } from "../../Redux/features/Auth/authSlice";
 
 const Navbar = () => {
-  const { email } = useSelector(state => state.auth)
+  const { user:{email ,role}} = useSelector(state => state.auth)
   const dispatch = useDispatch()
   const handleLogOut = () => {
     signOut(auth).then(() => {
@@ -34,7 +34,9 @@ const Navbar = () => {
 
           {
             email ? (
-              <button onClick={handleLogOut} className='border border-black px-2 py-1 rounded-full hover:border-primary hover:text-rose-400 hover:bg-primary hover:px-4 transition-all '> logOut</button>
+              <>
+                <button onClick={handleLogOut} className='border border-black px-2 py-1 rounded-full hover:border-primary hover:text-rose-400 hover:bg-primary hover:px-4 transition-all '> logOut</button>
+              </>
             ) :
               <li>
                 <Link
@@ -45,6 +47,8 @@ const Navbar = () => {
                 </Link>
               </li>
           }
+          {email&&role && <Link to={'/dashboard'} className='border border-black px-2 py-1 rounded-full hover:border-primary hover:text-rose-400 hover:bg-primary hover:px-4 transition-all '> Deashboard</Link >}
+          {email&& !role && <Link to={'/register'} className='border border-black px-2 py-1 rounded-full hover:border-primary hover:text-rose-400 hover:bg-primary hover:px-4 transition-all '> Get Start</Link >}
         </div>
       </ul>
     </nav>

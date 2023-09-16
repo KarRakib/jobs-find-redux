@@ -5,9 +5,11 @@ import './index.css'
 import { Provider } from 'react-redux'
 import store from './Redux/Store.jsx'
 
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
+      {/* <SideLogin/> */}
     <App />
     </Provider>
   </React.StrictMode>,
