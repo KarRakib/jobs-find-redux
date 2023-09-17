@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { useForm, useWatch } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { FaChevronLeft } from "react-icons/fa";
+import { useSelector } from "react-redux";
+
+import { useUserSaveMutation } from "../../Redux/features/Auth/authapi";
 
 const CandidateRegistration = () => {
   const [countries, setCountries] = useState([]);
@@ -9,15 +12,19 @@ const CandidateRegistration = () => {
   const term = useWatch({ control, name: "term" });
   console.log(term);
   const navigate = useNavigate();
-
+const {user} = useSelector(state=> state.auth)
   useEffect(() => {
     fetch("https://restcountries.com/v3.1/all")
       .then((res) => res.json())
       .then((data) => setCountries(data));
   }, []);
 
+const [saveUser,{data}] = useUserSaveMutation()
+console.log(data);
   const onSubmit = (data) => {
+    saveUser({...data, role:'candidate'})
     console.log(data);
+
   };
 
   return (
@@ -51,7 +58,7 @@ const CandidateRegistration = () => {
             <label className='mb-2' htmlFor='email'>
               Email
             </label>
-            <input type='email' id='email' {...register("email")} />
+            <input value={user?.email} type='email' id='email' {...register("email")} />
           </div>
           <div className='flex flex-col w-full max-w-xs'>
             <h1 className='mb-3'>Gender</h1>
@@ -63,7 +70,7 @@ const CandidateRegistration = () => {
                   {...register("gender")}
                   value='male'
                 />
-                <label className='ml-2 text-lg' for='male'>
+                <label className='ml-2 text-lg' htmlFor='male'>
                   Male
                 </label>
               </div>
@@ -74,7 +81,7 @@ const CandidateRegistration = () => {
                   {...register("gender")}
                   value='female'
                 />
-                <label className='ml-2 text-lg' for='female'>
+                <label className='ml-2 text-lg' htmlFor='female'>
                   Female
                 </label>
               </div>
@@ -85,7 +92,7 @@ const CandidateRegistration = () => {
                   {...register("gender")}
                   value='other'
                 />
-                <label className='ml-2 text-lg' for='other'>
+                <label className='ml-2 text-lg' htmlFor='other'>
                   Other
                 </label>
               </div>
@@ -93,13 +100,14 @@ const CandidateRegistration = () => {
           </div>
           <hr className='w-full mt-2 bg-black' />
           <div className='flex flex-col w-full max-w-xs'>
-            <label className='mb-3' for='country'>
+            <label className='mb-3' htmlFor='country'>
               Country
             </label>
             <select {...register("country")} id='country'>
               {countries
                 .sort((a, b) => a?.name?.common?.localeCompare(b?.name?.common))
                 .map(({ name }) => (
+                  // eslint-disable-next-line react/jsx-key
                   <option value={name.common}>{name.common}</option>
                 ))}
             </select>
@@ -131,7 +139,7 @@ const CandidateRegistration = () => {
                 {...register("term")}
                 id='terms'
               />
-              <label for='terms'>I agree to terms and conditions</label>
+              <label htmlFor='terms'>I agree to terms and conditions</label>
             </div>
             <button disabled={!term} className='btn' type='submit'>
               Submit

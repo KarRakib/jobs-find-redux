@@ -24,7 +24,7 @@ console.log(jobos);
   } = useFieldArray({ control, name: "requirements" });
 
   const onSubmit = (data) => {
-    postJob(data)
+    postJob({...data, applicants:[], queries:[]})
     console.log(data);
   };
 
@@ -48,8 +48,8 @@ console.log(jobos);
             Company Name
           </label>
           <input
-            disabled
-            className='cursor-not-allowed'
+            // disabled
+            // className='cursor-not-allowed'
             type='text'
             id='companyName'
             {...register("companyName")}

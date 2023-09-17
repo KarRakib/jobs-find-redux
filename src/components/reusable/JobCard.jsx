@@ -1,10 +1,14 @@
-  import { useNavigate } from "react-router-dom";
+  import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 
 // eslint-disable-next-line react/prop-types
-const JobCard = ({ jobData }) => {
+const JobCard = ({ data }) => {
   const navigate = useNavigate();
+
+ 
   const { _id, position, companyName, location, employmentType } =
-    jobData || {};
+    data || {};
 
   return (
     <div
@@ -25,9 +29,10 @@ const JobCard = ({ jobData }) => {
       </div>
       <div className='flex justify-between items-center mt-5'>
         <p>{employmentType}</p>
-        <button className='btn' onClick={() => navigate(`/job-details/${_id}`)}>
+        {/* <button className='btn' onClick={() => navigate(`/job-details/${_id}`)}>
           Details
-        </button>
+        </button> */}
+        <Link to={`/job-details/${_id}`}>Details</Link>
       </div>
     </div>
   );
