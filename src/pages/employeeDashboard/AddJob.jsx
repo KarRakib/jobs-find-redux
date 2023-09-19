@@ -2,11 +2,14 @@
 import { useFieldArray, useForm } from "react-hook-form";
 import { FiTrash } from "react-icons/fi";
 import { useJobPostMutation } from "../../Redux/features/Job/JobApi";
+import { useSelector } from "react-redux";
+import toast from "react-hot-toast";
 
 const AddJob = () => {
-  const { handleSubmit, register, control } = useForm();
+  const {user} = useSelector(state=> state.auth)
+    const { handleSubmit, register, control,reset } = useForm({defaultValues:{companyName:user.companyName}});
   const [postJob,{data:jobos}] = useJobPostMutation()
-console.log(jobos);
+console.log(user);
   const {
     fields: resFields,
     append: resAppend,
@@ -24,8 +27,10 @@ console.log(jobos);
   } = useFieldArray({ control, name: "requirements" });
 
   const onSubmit = (data) => {
-    postJob({...data, applicants:[], queries:[]})
+    postJob({...data, email:user.email, applicants:[], queries:[]})
     console.log(data);
+    reset()
+    toast.success(`${data.position} Position Complete`)
   };
 
   return (
@@ -48,8 +53,8 @@ console.log(jobos);
             Company Name
           </label>
           <input
-            // disabled
-            // className='cursor-not-allowed'
+            disabled
+            className='cursor-not-allowed'
             type='text'
             id='companyName'
             {...register("companyName")}

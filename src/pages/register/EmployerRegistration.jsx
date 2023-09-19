@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { FaChevronLeft } from "react-icons/fa";
 import { useUserSaveMutation } from "../../Redux/features/Auth/authapi";
 import { useSelector } from "react-redux";
+import toast from "react-hot-toast";
 
 const EmployerRegistration = () => {
   const [countries, setCountries] = useState([]);
@@ -46,6 +47,8 @@ console.log(data);
   const onSubmit = (data) => {
     saveUser({...data, role: 'employer'})
     console.log(data);
+    navigate('/dashboard')
+    toast.success(`Hi ! ${data.firstName} complete your employer Account`)
   };
 
   return (
@@ -57,12 +60,12 @@ console.log(data);
         <FaChevronLeft />
         <p>back</p>
       </div>
-      <div className='flex justify-center items-center overflow-auto p-10'>
+      <div className='flex justify-center items-center shadow-2xl overflow-auto p-10'>
         <form
           className='bg-secondary/20 shadow-lg p-10 rounded-2xl flex flex-wrap gap-3 max-w-3xl justify-between'
           onSubmit={handleSubmit(onSubmit)}
         >
-          <h1 className='w-full text-2xl text-primary mb-5'>Candidate</h1>
+          <h1 className='w-full text-2xl text-primary mb-5'>Employer</h1>
           <div className='flex flex-col w-full max-w-xs'>
             <label className='mb-2' htmlFor='firstName'>
               First Name

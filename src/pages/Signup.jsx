@@ -4,6 +4,7 @@ import { useForm, useWatch } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { createUser } from "../Redux/features/Auth/authSlice";
+import toast from "react-hot-toast";
 const Signup = () => {
   const { handleSubmit, register, reset, control } = useForm();
   const password = useWatch({ control, name: "password" });
@@ -28,6 +29,9 @@ const Signup = () => {
 
   const onSubmit = ({email, password}) => {
         dispatch(createUser({email,password}))
+        reset()
+        navigate('/')
+        toast.success('welcome')
   };
 
   return (

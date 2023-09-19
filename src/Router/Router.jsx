@@ -66,11 +66,11 @@ const Router = createBrowserRouter([
     ),
     children: [
       {
-        path: "add-job",
+        path: "/dashboard/add-job",
         element: <AddJob />,
       },
       {
-        path: "applied-jobs",
+        path: "/dashboard/applied-jobs",
         element: <AppliedJobs />,
       },
       {

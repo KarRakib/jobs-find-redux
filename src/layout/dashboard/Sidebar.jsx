@@ -22,12 +22,20 @@ const Sidebar = () => {
             Applied Jobs
           </Link>
         </li>}
-       {!role==="candidate"&&<li> <Link
+       {role==="employer"&&<>
+       <li> <Link
             className='hover:bg-primary hover:text-white bg-primary/10 transition-all w-full block py-2 px-3 rounded-full'
             to='add-job'
           >
             Add Job
-          </Link> </li>}
+          </Link> </li>
+          <li> <Link
+            className='hover:bg-primary hover:text-white bg-primary/10 transition-all w-full block py-2 px-3 rounded-full'
+           to={"/dashboard/applied-jobs"}
+          >
+            My Posted Job
+          </Link> </li>
+       </>}
       </ul>
     </div>
   );

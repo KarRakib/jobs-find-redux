@@ -37,3 +37,18 @@ useEffect(()=>{
 }
 
 export default App
+
+
+// applicants: []
+// companyName: "Rakib Form"
+// email: "employer1@gamil.com"
+// employmentType: "Part Time"
+// experience: "2years"
+// location: "london"
+// overview: "I need SEO expert to you "
+// position: "SEO Expert"
+// queries: Array(1)
+// 0: {id: '6507ad11f09e228da0bf9585', email: 'candidate@gmail.com', question: 'fffdfasfasd', qusId: 0.06601321378533576, reply: Array(0)}
+
+
+// _id: "6507b9934b9dcff3abea4523"

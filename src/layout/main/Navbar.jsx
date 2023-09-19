@@ -18,10 +18,10 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`h-14 fixed w-full z-[999] ${pathname === "/" ? null : "bg-white"
+      className={`fixed w-full z-[999] ${pathname === "/" ? null : "bg-white"
         }`}
     >
-      <ul className='max-w-7xl justify-between flex gap-3 h-full items-center'>
+      <ul className=' max-w-sm md:max-w-7xl justify-between flex gap-3 h-full items-center'>
         <li className=' font-semibold text-2xl'>
           <Link to='/'>JobBox</Link>
         </li>
@@ -48,7 +48,7 @@ const Navbar = () => {
               </li>
           }
           {email&&role && <Link to={'/dashboard'} className='border border-black px-2 py-1 rounded-full hover:border-primary hover:text-rose-400 hover:bg-primary hover:px-4 transition-all '> Deashboard</Link >}
-          {email&& !role && <Link to={'/register'} className='border border-black px-2 py-1 rounded-full hover:border-primary hover:text-rose-400 hover:bg-primary hover:px-4 transition-all '> Get Start</Link >}
+          {email&& !role && <Link to={'/register'} className='border border-black px-2 py-1 rounded-full hover:border-primary hover:text-rose-400 hover:bg-primary hover:px-4 transition-all '> Get Started</Link >}
         </div>
       </ul>
     </nav>

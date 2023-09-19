@@ -5,6 +5,7 @@ import { FaChevronLeft } from "react-icons/fa";
 import { useSelector } from "react-redux";
 
 import { useUserSaveMutation } from "../../Redux/features/Auth/authapi";
+import toast from "react-hot-toast";
 
 const CandidateRegistration = () => {
   const [countries, setCountries] = useState([]);
@@ -23,7 +24,8 @@ const [saveUser,{data}] = useUserSaveMutation()
 console.log(data);
   const onSubmit = (data) => {
     saveUser({...data, role:'candidate'})
-    console.log(data);
+        navigate('/jobs')
+        toast.success(`Hey ${data.firstName} complete your Candidate Profile`)
 
   };
 
