@@ -17,41 +17,60 @@ const Navbar = () => {
   const { pathname } = useLocation();
 
   return (
-    <nav
-      className={`fixed w-full z-[999] ${pathname === "/" ? null : "bg-white"
-        }`}
-    >
-      <ul className=' max-w-sm md:max-w-7xl justify-between flex gap-3 h-full items-center'>
-        <li className=' font-semibold text-2xl'>
+    <nav className={`fixed w-full z-[999] ${pathname === "/" ? null : "bg-white"}`}>
+    <div className='max-w-screen-lg mx-auto px-1'>
+      <ul className='flex justify-between items-center h-full'>
+        <li className='font-semibold text-xl md:text-2xl'>
           <Link to='/'>JobBox</Link>
         </li>
-        <div className="flex gap-3">
+        
+        <div className='flex gap-2 items-center mr-7'>
           <li>
             <Link className='hover:text-primary' to='/jobs'>
               Jobs
             </Link>
           </li>
-
-          {
-            email ? (
-              <>
-                <button onClick={handleLogOut} className='border border-black px-2 py-1 rounded-full hover:border-primary hover:text-rose-400 hover:bg-primary hover:px-4 transition-all '> logOut</button>
-              </>
-            ) :
-              <li>
-                <Link
-                  className='border border-black px-2 py-1 rounded-full hover:border-primary hover:text-rose-400 hover:bg-primary hover:px-4 transition-all '
-                  to='/login'
-                >
-                  Login
-                </Link>
-              </li>
-          }
-          {email&&role && <Link to={'/dashboard'} className='border border-black px-2 py-1 rounded-full hover:border-primary hover:text-rose-400 hover:bg-primary hover:px-4 transition-all '> Deashboard</Link >}
-          {email&& !role && <Link to={'/register'} className='border border-black px-2 py-1 rounded-full hover:border-primary hover:text-rose-400 hover:bg-primary hover:px-4 transition-all '> Get Started</Link >}
+  
+          {email ? (
+            <>
+              <button
+                onClick={handleLogOut}
+                className='border border-black px-2 py-1 rounded-full hover:border-primary hover:text-rose-400 hover:bg-primary hover:px-4 transition-all'
+              >
+                Log Out
+              </button>
+            </>
+          ) : (
+            <li>
+              <Link
+                className='border border-black px-1 py-1 rounded-full hover:border-primary hover:text-rose-400 hover:bg-primary hover:px-4 transition-all'
+                to='/login'
+              >
+                Login
+              </Link>
+            </li>
+          )}
+          {email && role && (
+            <Link
+              to={'/dashboard'}
+              className='border border-black px-1 py-1 rounded-full hover:border-primary hover:text-rose-400 hover:bg-primary hover:px-4 transition-all'
+            >
+              Dashboard
+            </Link>
+          )}
+          {email && !role && (
+            <Link
+              to={'/register'}
+              className='border border-black px-1 py-1 rounded-full hover:border-primary hover:text-rose-400 hover:bg-primary hover:px-4 transition-all'
+            >
+              Get Started
+            </Link>
+          )}
         </div>
       </ul>
-    </nav>
+    </div>
+  </nav>
+  
   );
 };
 

@@ -13,6 +13,10 @@ import EmployerDashboard from "../pages/employeeDashboard/EmployerDashboard";
 import CandidateDashboard from "../pages/candidateDashboard/CandidateDashboard";
 import PrivateRoute from "../utils/PrivateRoute";
 import AppliedJobs from "../pages/candidateDashboard/AppliedJobs";
+import MyPostsJob from "../pages/employeeDashboard/MyPostsJob";
+import CanditateDetails from "../pages/candidateDashboard/CanditateDetails";
+import ChatForm from "../pages/candidateDashboard/ChatForm";
+
 
 const Router = createBrowserRouter([
   {
@@ -27,6 +31,7 @@ const Router = createBrowserRouter([
         path: "/jobs",
         element: <Jobs />,
       },
+     
       {
         path: "/job-details/:id",
         element: <JobDetails />,
@@ -72,6 +77,18 @@ const Router = createBrowserRouter([
       {
         path: "/dashboard/applied-jobs",
         element: <AppliedJobs />,
+      },
+      {
+        path: "/dashboard/my-jobs",
+        element: <MyPostsJob />,
+      },
+      {
+        path: "/dashboard/my-jobs/:id",
+        element: <CanditateDetails />,
+      },
+      {
+        path: "/dashboard/inbox/:id",
+        element: <ChatForm/>,
       },
       {
         path: "employer",

@@ -7,7 +7,7 @@ const JobCard = ({ data }) => {
   const navigate = useNavigate();
 
  
-  const { _id, position, companyName, location, employmentType } =
+  const { _id, position, companyName, location, employmentType,jobs } =
     data || {};
 
   return (
@@ -29,6 +29,7 @@ const JobCard = ({ data }) => {
       </div>
       <div className='flex justify-between items-center mt-5'>
         <p>{employmentType}</p>
+        {!jobs && <p className="bg-black text-white px-1 rounded-md">Job Close</p>}
         {/* <button className='btn' onClick={() => navigate(`/job-details/${_id}`)}>
           Details
         </button> */}

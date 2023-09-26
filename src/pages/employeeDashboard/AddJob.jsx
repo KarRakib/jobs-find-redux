@@ -27,7 +27,7 @@ console.log(user);
   } = useFieldArray({ control, name: "requirements" });
 
   const onSubmit = (data) => {
-    postJob({...data, email:user.email, applicants:[], queries:[]})
+    postJob({...data, email:user.email, jobs:"Close",applicants:[], queries:[], chat:[]})
     console.log(data);
     reset()
     toast.success(`${data.position} Position Complete`)
