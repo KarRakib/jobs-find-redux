@@ -19,7 +19,7 @@ const AppliedJobs = () => {
   return (
     <div>
       <h1 className='text-xl py-5'>Applied jobs</h1>
-      <div className='grid grid-cols-2 gap-5 pb-5'>
+      <div className='grid grid-cols-1 md:grid-cols-2 gap-5 pb-5'>
         {data?.data?.map((job) => (
           // eslint-disable-next-line react/jsx-key
           <JobCard data={job} />

@@ -7,7 +7,7 @@ function ChatForm() {
   const {id} = useParams()
   console.log(id);
   const {user} = useSelector(state => state.auth)
-  const {data} = useGetSigleMessageByIdQuery(id,{pollingInterval:50000})
+  const {data} = useGetSigleMessageByIdQuery(id,{pollingInterval:500})
   const [saveMessage] = useMesssageSetMutation()
   const [updateMessage, {data:update}] = useChatQustionMutation()
   const [updateAnwaser,{data: answar}] = useChatAnswerMutation()

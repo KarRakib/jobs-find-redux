@@ -17,7 +17,7 @@ const JobDetails = () => {
   const [sendReply, { data: replys }] = useReplyMutation()
   const navigate = useNavigate();
   const { register, reset, handleSubmit } = useForm()
-  const { data, isLoading } = useGetJobByIdQuery(id)
+  const { data, isLoading } = useGetJobByIdQuery(id,{pollingInterval:500})
   console.log('check id', data?.data);
   const {
     companyName,

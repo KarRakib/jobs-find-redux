@@ -8,7 +8,7 @@ import { useState } from "react";
 const CanditateDetails = () => {
   const { id } = useParams()
   
-  const { data, isLoading, isError, error } = useGetUserByIdQuery(id);
+  const { data, isLoading, isError, error } = useGetUserByIdQuery(id,{pollingInterval:500});
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleChatBox = () => {

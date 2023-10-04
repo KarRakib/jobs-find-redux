@@ -11,7 +11,7 @@ const MyPostsJob = () => {
   const {
     user: { email },
   } = useSelector((state) => state.auth);
-  const {data, isLoading} = useGetMyJobsQuery(email)
+  const {data, isLoading} = useGetMyJobsQuery(email,{pollingInterval:500})
   console.log(data);
 
   if (isLoading) {
